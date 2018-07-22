@@ -5,7 +5,8 @@ import { Gun } from '../../../models';
 
 @Component({
   selector: 'mgl-locker',
-  templateUrl: 'locker.component.html'
+  templateUrl: 'locker.component.html',
+  styleUrls: ['locker.component.scss']
 })
 export class LockerComponent implements OnInit {
   constructor(public lockerService: LockerService) { }

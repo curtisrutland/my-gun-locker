@@ -12,7 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   AppComponent, LoginComponent, NavbarComponent,
   LockerComponent, GunCardComponent, GunCardColsComponent,
-  HeroComponent, GunCardColsContainerComponent, AddGunComponent
+  HeroComponent, GunCardColsContainerComponent, AddGunComponent,
+  ScrollTopComponent
 } from '../components';
 import { ContainerDirective, ButtonDirective } from "../directives";
 import { UserService, LockerService } from "../services";
@@ -28,6 +29,7 @@ import { environment } from '../environments/environment';
     GunCardComponent,
     GunCardColsComponent,
     GunCardColsContainerComponent,
+    ScrollTopComponent,
     AddGunComponent,
     HeroComponent,
     ContainerDirective,

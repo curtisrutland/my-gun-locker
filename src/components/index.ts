@@ -1,6 +1,7 @@
 export * from "./app/app.component";
 export * from "./navbar/navbar.component";
 export * from "./hero/hero.component";
+export * from "./scroll-top/scroll-top.component";
 
 export * from "./guns/gun-card/gun-card.component";
 export * from "./guns/gun-card-cols/gun-card-cols.component";

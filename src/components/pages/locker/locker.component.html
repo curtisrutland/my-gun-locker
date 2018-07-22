@@ -1,5 +1,12 @@
 <section b-hero="My Guns" is="primary bold"></section>
-<section [mgl-gun-card-cols-container]="gunGroups" *ngIf="gunGroups.length; else empty" style="padding: 1.5rem"></section>
-<ng-template #empty>
-  <mgl-add-gun></mgl-add-gun>
-</ng-template>
+<section class="notification is-warning no-margin" *ngIf="!gunGroups.length">
+  <div b-container>
+    <h2 class="subtitle">
+      You haven't added any guns yet!
+    </h2>
+  </div>
+</section>
+
+<mgl-add-gun></mgl-add-gun>
+<section [mgl-gun-card-cols-container]="gunGroups" *ngIf="gunGroups.length" style="padding: 1.5rem"></section>
+<mgl-scroll-top></mgl-scroll-top>

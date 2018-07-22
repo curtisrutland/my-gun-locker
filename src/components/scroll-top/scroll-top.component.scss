@@ -1,0 +1,7 @@
+$half: 1rem / 2;
+a {
+  position: fixed;
+  bottom: 5px;
+  left: calc(50% - #{$half});
+  color: black;
+}
