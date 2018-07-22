@@ -14,6 +14,7 @@ export class LockerComponent implements OnInit {
   gunGroups: Gun[][] = [];
 
   ngOnInit() {
+    console.log("init");
     this.lockerService.guns$.subscribe(g => {
       console.log(g);
       this.gunGroups = this.chunkArray(g, 3);

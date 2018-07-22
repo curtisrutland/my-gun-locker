@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../services';
 import { Router } from '@angular/router';
 
@@ -11,15 +11,18 @@ export class AppComponent {
 
   constructor(
     public userService: UserService,
-    public cd: ChangeDetectorRef,
     public router: Router) { }
 
-  loggedIn = false;
+  loggedIn = true;
 
   ngOnInit() {
     this.userService.user$.subscribe(user => {
-      this.loggedIn = user.loggedIn;
-      this.cd.detectChanges();
+      if(user && user.loggedIn) {
+        this.loggedIn = true;
+      }
+      else {
+        this.loggedIn = false;
+      }
     });
   }
 }

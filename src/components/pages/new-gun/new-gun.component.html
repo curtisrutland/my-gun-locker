@@ -8,6 +8,42 @@
     </div>
   </div>
 </section>
-<form>
+<section class="section">
+  <div class="container">
 
-</form>
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Name" name="name" [(ngModel)]="name" (ngModelChange)="change()">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Serial Number</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Make/Model</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Make/Model" name="details" [(ngModel)]="details">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Notes</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="Notes"></textarea>
+        </div>
+      </div>
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <input class="button is-link is-rounded is-large" type="submit" value="Submit" *ngIf="canSubmit">
+        </div>
+      </div>
+
+  </div>
+</section>
+
+{{ canSubmit | json }}
+
+{{ name | json }}

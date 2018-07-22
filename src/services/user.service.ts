@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
 
   constructor(public afAuth: AngularFireAuth) {
-    afAuth.auth.onAuthStateChanged(afUser => this.userStateChanged(afUser));
+    afAuth.user.subscribe(u => this.userStateChanged(u));
   }
 
   private _user$ = new BehaviorSubject<User>(new User());

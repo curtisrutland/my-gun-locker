@@ -19,13 +19,15 @@ export class NewGunComponent implements OnInit {
   notes: string = "";
   loading = false;
 
-  get canSubmit() {
-    return this.serial.trim()
-      && this.name.trim()
-      && this.details.trim();
-  }
+  canSubmit = false;
 
   ngOnInit() { }
+
+  change() {
+    this.canSubmit = !!this.name;
+    console.log(this.canSubmit);
+    console.log(this.name);
+  }
 
   async submit() {
     const gun: Gun = {

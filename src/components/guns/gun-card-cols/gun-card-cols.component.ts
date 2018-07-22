@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Gun } from '../../../models';
 
 @Component({
@@ -8,10 +8,6 @@ import { Gun } from '../../../models';
 
 export class GunCardColsComponent implements OnInit {
   @Input('mgl-gun-card-cols') gunGroup: Gun[];
-
-  constructor(private el: ElementRef) {
-    this.el.nativeElement.classList.add("columns");
-  }
 
   ngOnInit() { }
 }

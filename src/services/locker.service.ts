@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
 import { UserService } from './user.service';
 import { Gun, User } from '../models';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LockerService {
@@ -13,7 +13,7 @@ export class LockerService {
 
   private gunsCollection: AngularFirestoreCollection<Gun>;
   private gunsCollectionSubscription: Subscription;
-  private _gunsSubject = new Subject<Gun[]>();
+  private _gunsSubject = new BehaviorSubject<Gun[]>([]);
   guns$ = this._gunsSubject.asObservable();
 
   createTestGun() {
