@@ -1,27 +1,29 @@
 <nav class="navbar is-info is-fixed-top">
-  <div class="navbar-brand">
-    <div class="navbar-item app-title">My Gun Locker</div>
-    <div class="navbar-burger burger" data-target="navMenu" (click)="toggle()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <div class="navbar-menu" id="navMenu" [ngClass]="classes">
-    <div class="navbar-start">
-      <a class="navbar-item" [routerLink]="['/locker']">
-        Locker
-      </a>
+  <div b-container>
+    <div class="navbar-brand">
+      <div class="navbar-item app-title">My Gun Locker</div>
+      <div class="navbar-burger burger" data-target="navMenu" (click)="toggle()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item has-dropdown" [ngClass]="dropdownClasses" *ngIf="username">
-        <a class="navbar-link" (click)="toggleDropdown()">
-          {{username}}
+    <div class="navbar-menu" id="navMenu" [ngClass]="classes">
+      <div class="navbar-start">
+        <a class="navbar-item" [routerLink]="['/locker']">
+          Locker
         </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" (click)="logout()">Log Out</a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown" [ngClass]="dropdownClasses" *ngIf="username">
+          <a class="navbar-link" (click)="toggleDropdown()">
+            {{username}}
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" (click)="logout()">Log Out</a>
+          </div>
         </div>
       </div>
     </div>

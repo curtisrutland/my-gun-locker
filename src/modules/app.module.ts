@@ -7,6 +7,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   AppComponent, LoginComponent, NavbarComponent,
@@ -34,6 +35,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    FontAwesomeModule,
     AppRouterModule
   ],
   providers: [

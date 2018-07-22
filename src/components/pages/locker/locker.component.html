@@ -1,4 +1,4 @@
-<section class="hero is-medium is-primary is-bold">
+<section class="hero is-primary is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -7,16 +7,30 @@
     </div>
   </div>
 </section>
-<div b-container>
-  <div class="columns">
-    <div class="column is-one-third" *ngFor="let gun of (lockerService.guns$ | async)">
-      <div class="card">
-        <header class="card-header">
-          <p class="card-header-title">
-            {{gun.name}}
-          </p>
-        </header>
+<section class="section" *ngIf="gunGroups.length; else empty">
+  <div b-container>
+    <div class="columns" *ngFor="let group of gunGroups">
+      <div class="column is-one-third" *ngFor="let gun of group">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              {{gun.name}}
+            </p>
+          </header>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<ng-template #empty>
+  <section class="section">
+    <div b-container class="center">
+      <a b-btn="link large" (click)="createTests()">
+        <span class="icon">
+          <fa-icon [icon]="plus"></fa-icon>
+        </span>
+        <span>Add Test Guns</span>
+      </a>
+    </div>
+  </section>
+</ng-template>
