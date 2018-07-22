@@ -1,36 +1,5 @@
-<section class="hero is-primary is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        My Guns
-      </h1>
-    </div>
-  </div>
-</section>
-<section class="section" *ngIf="gunGroups.length; else empty">
-  <div b-container>
-    <div class="columns" *ngFor="let group of gunGroups">
-      <div class="column is-one-third" *ngFor="let gun of group">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              {{gun.name}}
-            </p>
-          </header>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section b-hero="My Guns" is="primary bold"></section>
+<section [mgl-gun-card-cols-container]="gunGroups" *ngIf="gunGroups.length; else empty" style="padding: 1.5rem"></section>
 <ng-template #empty>
-  <section class="section">
-    <div b-container class="center">
-      <a b-btn="link large" (click)="createTests()">
-        <span class="icon">
-          <fa-icon [icon]="plus"></fa-icon>
-        </span>
-        <span>Add Test Guns</span>
-      </a>
-    </div>
-  </section>
+  <mgl-add-gun></mgl-add-gun>
 </ng-template>

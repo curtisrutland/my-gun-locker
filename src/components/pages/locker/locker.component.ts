@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { LockerService } from '../../../services';
 import { Gun } from '../../../models';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'mgl-locker',
-  templateUrl: 'locker.component.html',
-  styleUrls: ['locker.component.scss']
+  templateUrl: 'locker.component.html'
 })
 export class LockerComponent implements OnInit {
   constructor(public lockerService: LockerService) { }
 
   gunGroups: Gun[][] = [];
-  plus = faPlusSquare;
 
   ngOnInit() {
     this.lockerService.guns$.subscribe(g => {
@@ -28,12 +26,6 @@ export class LockerComponent implements OnInit {
       chunks.push(chunk);
     }
     return chunks;
-  }
-
-  createTests() {
-    for (let i = 0; i < 14; i++) {
-      this.lockerService.createTestGun();
-    }
   }
 }
 
