@@ -1,6 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LockerService } from '../../../services';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'mgl-add-gun',
@@ -10,7 +10,7 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 export class AddGunComponent implements OnInit {
   constructor(public lockerService: LockerService) { }
 
-  plus = faPlusSquare;
+  plus = faPlus;
   
   ngOnInit() { }
 

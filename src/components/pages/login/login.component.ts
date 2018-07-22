@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { Router } from "@angular/router";
+import { UserService } from '../../../services';
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 
 @Component({
@@ -9,10 +10,18 @@ import * as firebase from 'firebase/app';
   styleUrls: ['login.component.scss']
 })
 export class LoginComponent {
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public userService: UserService, router: Router) {
+    // userService.user$.subscribe(u => {
+    //   if(u.loaded && u.loggedIn) {
+    //     router.navigate(['/']);
+    //   }
+    // });
+  }
+
+  warning = faExclamationTriangle;
 
   login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.userService.logIn();
   }
 
 }

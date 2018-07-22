@@ -41,5 +41,6 @@ export class NavbarComponent implements OnInit {
     this.userService.logOut();
     this.dropdownActive = false;
     this.menuActive = false;
+    this.cd.detectChanges();
   }
 }

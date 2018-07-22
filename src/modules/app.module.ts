@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
@@ -12,10 +11,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   AppComponent, LoginComponent, NavbarComponent,
   LockerComponent, GunCardComponent, GunCardColsComponent,
-  HeroComponent, GunCardColsContainerComponent, AddGunComponent,
-  ScrollTopComponent
+  GunCardColsContainerComponent, AddGunComponent,
+  ScrollTopComponent, NewGunComponent
 } from '../components';
-import { ContainerDirective, ButtonDirective } from "../directives";
 import { UserService, LockerService } from "../services";
 
 import { environment } from '../environments/environment';
@@ -30,14 +28,11 @@ import { environment } from '../environments/environment';
     GunCardColsComponent,
     GunCardColsContainerComponent,
     ScrollTopComponent,
-    AddGunComponent,
-    HeroComponent,
-    ContainerDirective,
-    ButtonDirective
+    NewGunComponent,
+    AddGunComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

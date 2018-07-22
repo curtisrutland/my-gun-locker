@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../../services';
-import { User } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,17 @@ import { User } from '../../models';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  loading = true;
-  user: User;
-  constructor(public userService: UserService, public cd: ChangeDetectorRef) { }
+
+  constructor(
+    public userService: UserService,
+    public cd: ChangeDetectorRef,
+    public router: Router) { }
+
+  loggedIn = false;
 
   ngOnInit() {
     this.userService.user$.subscribe(user => {
-      this.loading = !user.loaded;
-      this.user = user;
+      this.loggedIn = user.loggedIn;
       this.cd.detectChanges();
     });
   }

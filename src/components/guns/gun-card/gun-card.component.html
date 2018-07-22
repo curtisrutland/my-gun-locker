@@ -8,11 +8,9 @@
     <p class="subtitle">
       <strong>SN:</strong>
       <span>{{gun.serial}}</span>
-      <small *ngIf="showClipboard">
-        <a class="icon copy-icon" (click)="copy()">
-          <fa-icon [icon]="icon"></fa-icon>
-        </a>
-      </small>
+      <a class="button is-rounded icon copy-icon" (click)="copy()" *ngIf="showClipboard">
+        <fa-icon [icon]="icon"></fa-icon>
+      </a>
     </p>
     <p>
       {{gun.details}}

@@ -1,5 +1,7 @@
 <mgl-navbar></mgl-navbar>
-<router-outlet *ngIf="!loading && user.loggedIn; else showLogin"></router-outlet>
-<ng-template #showLogin>
+<div *ngIf="loggedIn; else login">
+  <router-outlet></router-outlet>
+</div>
+<ng-template #login>
   <mgl-login></mgl-login>
 </ng-template>

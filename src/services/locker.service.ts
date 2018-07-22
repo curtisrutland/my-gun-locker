@@ -30,8 +30,12 @@ export class LockerService {
     }
   }
 
-  createGun(gun: Gun) {
+  async createGun(gun: Gun) {
+    await this.gunsCollection.doc(gun.id).set(gun);
+  }
 
+  getId(): string {
+    return this.afs.createId(); 
   }
 
   private userStateChanged(user: User) {

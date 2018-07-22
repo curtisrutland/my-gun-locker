@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LockerComponent } from '../components';
+import { LockerComponent, NewGunComponent, LoginComponent } from '../components';
 
 const routes: Routes = [
-  { path: 'locker', component: LockerComponent },
-  { path: '', redirectTo: '/locker', pathMatch: 'full' }
+  { path: 'new', component: NewGunComponent },
+  { path: '', component: LockerComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
