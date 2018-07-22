@@ -10,23 +10,32 @@
 </section>
 <section class="section">
   <div class="container">
-
+    <form #form="ngForm" (ngSubmit)="submit()">
       <div class="field">
         <label class="label">Name</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Name" name="name" [(ngModel)]="name" (ngModelChange)="change()">
+          <input class="input" type="text" placeholder="Name" name="name" [(ngModel)]="name">
         </div>
+        <p class="help">Required</p>
       </div>
       <div class="field">
         <label class="label">Serial Number</label>
         <div class="control">
           <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
         </div>
+        <p class="help">Required</p>
       </div>
       <div class="field">
         <label class="label">Make/Model</label>
         <div class="control">
           <input class="input" type="text" placeholder="Make/Model" name="details" [(ngModel)]="details">
+        </div>
+        <p class="help">Required</p>
+      </div>
+      <div class="field">
+        <label class="label">Primary Photo</label>
+        <div class="control">
+          <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
         </div>
       </div>
       <div class="field">
@@ -37,13 +46,14 @@
       </div>
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <input class="button is-link is-rounded is-large" type="submit" value="Submit" *ngIf="canSubmit">
+          <button [ngClass]="buttonClass" type="submit" [disabled]="!canSubmit">
+            <span class="icon">
+              <fa-icon [icon]="plus"></fa-icon>
+            </span>
+            <span>Add Gun</span>
+          </button>
         </div>
       </div>
-
+    </form>
   </div>
 </section>
-
-{{ canSubmit | json }}
-
-{{ name | json }}

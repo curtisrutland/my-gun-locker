@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LockerService } from '../../../services';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,15 +7,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class AddGunComponent implements OnInit {
-  constructor(public lockerService: LockerService) { }
 
   plus = faPlus;
   
   ngOnInit() { }
-
-  createTestGuns() {
-    for (let i = 0; i < 14; i++) {
-      this.lockerService.createTestGun();
-    }
-  }
 }

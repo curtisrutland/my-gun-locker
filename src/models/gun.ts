@@ -6,4 +6,6 @@ export interface Gun {
   notes?: string;
   primaryPhotoUrl?: string;
   photos?: string[];
+  createdOn: string;
+  modifiedOn: string;
 }
