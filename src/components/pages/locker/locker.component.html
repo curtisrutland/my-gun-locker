@@ -1,0 +1,22 @@
+<section class="hero is-medium is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        My Guns
+      </h1>
+    </div>
+  </div>
+</section>
+<div b-container>
+  <div class="columns">
+    <div class="column is-one-third" *ngFor="let gun of (lockerService.guns$ | async)">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{gun.name}}
+          </p>
+        </header>
+      </div>
+    </div>
+  </div>
+</div>
