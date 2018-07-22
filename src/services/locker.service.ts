@@ -22,7 +22,8 @@ export class LockerService {
       id: newId,
       name: "test",
       details: "test details",
-      notes: "test notes"
+      notes: "test notes",
+      serial: "ABCD123"
     };
     if(this.gunsCollection) {
       this.gunsCollection.doc(newId).set(gun);

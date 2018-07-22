@@ -31,7 +31,7 @@ export class LockerComponent implements OnInit {
   }
 
   createTests() {
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 14; i++) {
       this.lockerService.createTestGun();
     }
   }

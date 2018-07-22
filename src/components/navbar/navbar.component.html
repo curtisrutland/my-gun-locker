@@ -1,8 +1,8 @@
 <nav class="navbar is-info is-fixed-top">
   <div b-container>
     <div class="navbar-brand">
-      <a class="navbar-item app-title">My Gun Locker</a>
-      <div class="navbar-burger burger" (click)="toggle()" [routerLink]="['/locker']">
+      <a class="navbar-item app-title"  [routerLink]="['/locker']">My Gun Locker</a>
+      <div class="navbar-burger burger" (click)="toggle()" [ngClass]="classes">
         <span></span>
         <span></span>
         <span></span>
