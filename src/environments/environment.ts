@@ -8,6 +8,6 @@ export const environment = {
     storageBucket: "my-gun-locker.appspot.com",
     messagingSenderId: "42273997774"
   },
-  version: "0.1.1",
+  version: "0.1.2",
   projectLink: "https://github.com/curtisrutland/my-gun-locker"
 };

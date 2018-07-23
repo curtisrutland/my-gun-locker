@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[Live Demo Here](https://curtisrutland.github.io/my-gun-locker/locker)
+[Live Demo Here](https://my-gun-locker.firebaseapp.com/)
 
 ## Original Angular CLI Docs
 

@@ -8,8 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-gh": "ng build --prod --aot --base-href /my-gun-locker/",
-    "deploy": "gh-pages -d dist/my-gun-locker"
+    "build-gh": "ng build --prod --aot --build-optimizer --base-href /my-gun-locker/",
+    "build-fb": "ng build --prod --aot --build-optimizer",
+    "deploy-gh": "gh-pages -d dist/my-gun-locker",
+    "deploy-fb": "firebase deploy"
   },
   "private": true,
   "dependencies": {
