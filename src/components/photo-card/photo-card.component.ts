@@ -10,6 +10,8 @@ import { faImage } from '@fortawesome/free-solid-svg-icons';
 export class PhotoCardComponent implements OnInit {
 
   @Input() url: string;
+  @Input() alt: string = "no alt text available";
+
   icon = faImage;
 
   constructor() { }

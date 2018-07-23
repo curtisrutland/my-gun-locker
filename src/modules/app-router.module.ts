@@ -4,9 +4,8 @@ import { LockerComponent, NewGunComponent, LoginComponent, GunComponent } from '
 
 const routes: Routes = [
   { path: 'new', component: NewGunComponent },
-  { path: 'locker', component: LockerComponent },
   { path: 'g/:id', component: GunComponent },
-  { path: '', redirectTo: '/locker', pathMatch: 'full'}
+  { path: '', component: LockerComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

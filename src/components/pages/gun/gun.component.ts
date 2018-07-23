@@ -91,7 +91,7 @@ export class GunComponent implements OnInit {
       console.error(err);
     } finally {
       this.loading = false;
-      this.router.navigate(["/locker"]);
+      this.router.navigate(["/"]);
     }
   }
 }

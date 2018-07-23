@@ -3,7 +3,6 @@ import { UserService } from '../../services';
 import { User } from '../../models';
 import { environment } from '../../environments/environment';
 
-
 @Component({
   selector: 'mgl-navbar',
   templateUrl: 'navbar.component.html',
@@ -21,6 +20,7 @@ export class NavbarComponent implements OnInit {
   get dropdownClasses() { return this.dropdownActive ? ["is-active"] : [] };
   get username() { return this.user ? this.user.name : null };
   get version() { return environment.version };
+  get projectLink() { return environment.projectLink };
 
   ngOnInit() {
     this.userService.user$.subscribe(user => this.user = user);

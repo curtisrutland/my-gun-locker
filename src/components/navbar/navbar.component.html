@@ -11,12 +11,15 @@
 
     <div class="navbar-menu" [ngClass]="classes">
       <div class="navbar-start">
-        <!-- <a class="navbar-item" [routerLink]="['/locker']">
+        <!-- <a class="navbar-item" [routerLink]="['/']">
           Locker
         </a> -->
       </div>
 
       <div class="navbar-end">
+        <a class="navbar-item" [href]="projectLink" target="_blank">
+          <span>Project Repo</span>
+        </a>
         <div class="navbar-item">
           v{{version}}
         </div>
