@@ -13,7 +13,7 @@ import {
   LockerComponent, GunCardComponent, GunCardColsComponent,
   GunCardColsContainerComponent, AddGunComponent, GunComponent,
   ScrollTopComponent, NewGunComponent, HeroComponent,
-  NotificationComponent
+  NotificationComponent, PhotoGridComponent
 } from '../components';
 import { UserService, LockerService } from "../services";
 
@@ -21,18 +21,10 @@ import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    NavbarComponent,
-    LockerComponent,
-    GunCardComponent,
-    GunCardColsComponent,
-    GunCardColsContainerComponent,
-    ScrollTopComponent,
-    NewGunComponent,
-    AddGunComponent,
-    GunComponent,
-    HeroComponent,
+    AppComponent, LoginComponent, NavbarComponent,
+    LockerComponent, GunCardComponent, GunCardColsComponent,
+    GunCardColsContainerComponent, ScrollTopComponent, NewGunComponent,
+    AddGunComponent, GunComponent, HeroComponent, PhotoGridComponent,
     NotificationComponent
   ],
   imports: [

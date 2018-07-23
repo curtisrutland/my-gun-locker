@@ -45,11 +45,28 @@
           <div class="field">
             <label class="label">Notes</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="Notes"></textarea>
+              <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="notes"></textarea>
             </div>
           </div>
         </div>
 
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Primary Photo</label>
+            <figure *ngIf="gun?.primaryPhoto as photo">
+              <img [src]="photo.url" alt="primary photo">
+            </figure>
+          </div>
+        </div>
+
+      </div>
+      <div class="field is-grouped is-grouped-centered">
+        <button type="submit" [ngClass]="buttonClass" [disabled]="!canSubmit">
+          <span class="icon">
+            <fa-icon [icon]="icon"></fa-icon>
+          </span>
+          <span>Update Gun</span>
+        </button>
       </div>
     </form>
   </div>

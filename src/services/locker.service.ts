@@ -50,6 +50,20 @@ export class LockerService {
     await this.gunsCollection.doc(id).set(gun);
   }
 
+  async updateGun(gun: Gun, primaryImage?: File) {
+    if(primaryImage) {
+      if(gun.primaryPhoto){
+        if(!gun.photos) {
+          gun.photos = [];
+        }
+        gun.photos.push(gun.primaryPhoto);
+      }
+      let primaryPhoto = await this.createFile(primaryImage, gun.id);
+      gun.primaryPhoto = primaryPhoto;
+    }
+    await this.gunsCollection.doc(gun.id).update(gun);
+  }
+
   private async createFile(file: File, id: string): Promise<Photo> {
     const path = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
     const { url$ } = this.createFileObservables(file, path);
