@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/fires
 import { AngularFireStorage } from 'angularfire2/storage';
 import { UserService } from './user.service';
 import { Gun, User } from '../models';
-import { Subscription, BehaviorSubject } from 'rxjs';
+import { Subscription, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { finalize } from "rxjs/operators";
 import { Photo } from '../models/photo';
 
@@ -36,13 +36,23 @@ export class LockerService {
 
   private async createFile(file: File, id: string): Promise<Photo> {
     const path = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
+    const { url$ } = this.createFileObservables(file, path);
+    const url = await url$.toPromise();
+    return { path, url };
+  }
+
+  private createFileObservables(file: File, path: string): { progress$: Observable<number>, url$: Observable<string> } {
     const fileRef = this.storage.ref(path);
     const task = fileRef.put(file);
-    return new Promise<Photo>((res, _) => {
-      task.snapshotChanges().pipe(
-        finalize(() => fileRef.getDownloadURL().subscribe((url: string) => res({path, url})))
-      ).subscribe();
-    });
+    const urlSub = new Subject<string>();
+    task.snapshotChanges().pipe(finalize(() => {
+      fileRef.getDownloadURL().subscribe((url: string) => {
+        urlSub.next(url);
+        urlSub.complete();
+      });
+    })).subscribe();
+    const progress$ = task.percentageChanges();
+    return { progress$, url$: urlSub.asObservable() };
   }
 
   getId(): string {
