@@ -51,12 +51,13 @@
         </div>
 
         <div class="column is-half">
-          <div class="field">
+          <mgl-photo-card *ngIf="gun?.primaryPhoto as photo" [url]="photo.url"></mgl-photo-card>
+          <!-- <div class="field">
             <label class="label">Primary Photo</label>
             <figure *ngIf="gun?.primaryPhoto as photo">
               <img [src]="photo.url" alt="primary photo">
             </figure>
-          </div>
+          </div> -->
         </div>
 
       </div>

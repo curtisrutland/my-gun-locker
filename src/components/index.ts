@@ -2,6 +2,7 @@ export * from "./app/app.component";
 export * from "./navbar/navbar.component";
 export * from "./scroll-top/scroll-top.component";
 export * from "./photo-grid/photo-grid.component";
+export * from "./photo-card/photo-card.component";
 
 export * from "./bulma/hero/hero.component";
 export * from "./bulma/notification/notification.component";

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services';
 import { User } from '../../models';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   get classes() { return this.menuActive ? ["is-active"] : []; }
   get dropdownClasses() { return this.dropdownActive ? ["is-active"] : [] };
   get username() { return this.user ? this.user.name : null };
+  get version() { return environment.version };
 
   ngOnInit() {
     this.userService.user$.subscribe(user => this.user = user);

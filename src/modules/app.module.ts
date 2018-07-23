@@ -13,7 +13,7 @@ import {
   LockerComponent, GunCardComponent, GunCardColsComponent,
   GunCardColsContainerComponent, AddGunComponent, GunComponent,
   ScrollTopComponent, NewGunComponent, HeroComponent,
-  NotificationComponent, PhotoGridComponent
+  NotificationComponent, PhotoGridComponent, PhotoCardComponent
 } from '../components';
 import { UserService, LockerService } from "../services";
 
@@ -25,7 +25,7 @@ import { environment } from '../environments/environment';
     LockerComponent, GunCardComponent, GunCardColsComponent,
     GunCardColsContainerComponent, ScrollTopComponent, NewGunComponent,
     AddGunComponent, GunComponent, HeroComponent, PhotoGridComponent,
-    NotificationComponent
+    NotificationComponent, PhotoCardComponent
   ],
   imports: [
     BrowserModule,

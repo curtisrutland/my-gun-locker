@@ -17,6 +17,9 @@
       </div>
 
       <div class="navbar-end">
+        <div class="navbar-item">
+          v{{version}}
+        </div>
         <div class="navbar-item has-dropdown" [ngClass]="dropdownClasses" *ngIf="username">
           <a class="navbar-link" (click)="toggleDropdown()">
             {{username}}
