@@ -12,7 +12,8 @@ import {
   AppComponent, LoginComponent, NavbarComponent,
   LockerComponent, GunCardComponent, GunCardColsComponent,
   GunCardColsContainerComponent, AddGunComponent, GunComponent,
-  ScrollTopComponent, NewGunComponent
+  ScrollTopComponent, NewGunComponent, HeroComponent,
+  NotificationComponent
 } from '../components';
 import { UserService, LockerService } from "../services";
 
@@ -30,7 +31,9 @@ import { environment } from '../environments/environment';
     ScrollTopComponent,
     NewGunComponent,
     AddGunComponent,
-    GunComponent
+    GunComponent,
+    HeroComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,49 +1,57 @@
-<section class="hero is-primary is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">Add New Gun</h1>
-      <h2 class="subtitle">
-        Add a new gun to your locker.
-      </h2>
-    </div>
-  </div>
-</section>
+<b-hero title="Add New Gun" subtitle="Add a new gun to your locker." is="primary bold"></b-hero>
 <section class="section">
   <div class="container">
     <form #form="ngForm" (ngSubmit)="submit()">
-      <div class="field">
-        <label class="label">Name</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="Name" name="name" [(ngModel)]="name">
+      <div class="columns">
+
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Name" name="name" [(ngModel)]="name">
+            </div>
+            <p class="help">Required</p>
+          </div>
+          <div class="field">
+            <label class="label">Serial Number</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
+            </div>
+            <p class="help">Required</p>
+          </div>
         </div>
-        <p class="help">Required</p>
-      </div>
-      <div class="field">
-        <label class="label">Serial Number</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
+
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Make/Model</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Make/Model" name="details" [(ngModel)]="details">
+            </div>
+            <p class="help">Required</p>
+          </div>
+          <div class="field">
+            <label class="label">Update Primary Photo</label>
+            <div class="control">
+              <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
+            </div>
+          </div>
         </div>
-        <p class="help">Required</p>
+
       </div>
-      <div class="field">
-        <label class="label">Make/Model</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="Make/Model" name="details" [(ngModel)]="details">
+
+      <div class="columns">
+
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Notes</label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="Notes"></textarea>
+            </div>
+          </div>
         </div>
-        <p class="help">Required</p>
+
       </div>
-      <div class="field">
-        <label class="label">Primary Photo</label>
-        <div class="control">
-          <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Notes</label>
-        <div class="control">
-          <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="Notes"></textarea>
-        </div>
-      </div>
+
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
           <button [ngClass]="buttonClass" type="submit" [disabled]="!canSubmit">

@@ -22,7 +22,23 @@ export class LockerService {
   private gunsCollection: AngularFirestoreCollection<Gun>;
   private gunsCollectionSubscription: Subscription;
   private _gunsSubject = new BehaviorSubject<Gun[]>([]);
+
   guns$ = this._gunsSubject.asObservable();
+
+  getId(): string {
+    return this.afs.createId();
+  }
+
+  getGun(id: string): Promise<Gun> {
+    let doc = this.gunsCollection.doc<Gun>(id);
+    return new Promise<Gun>((res, rej) => {
+      let sub = doc.valueChanges().subscribe(d => {
+        if (d) res(d);
+        else rej("not found");
+        sub.unsubscribe();
+      });
+    });
+  }
 
   async createGun(gun: Gun, primaryImage?: File) {
     if (!gun.id) gun.id = this.getId();
@@ -53,10 +69,6 @@ export class LockerService {
     })).subscribe();
     const progress$ = task.percentageChanges();
     return { progress$, url$: urlSub.asObservable() };
-  }
-
-  getId(): string {
-    return this.afs.createId();
   }
 
   private userStateChanged(user: User) {

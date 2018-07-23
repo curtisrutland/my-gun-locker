@@ -1,0 +1,56 @@
+<b-hero [title]="gunName" subtitle="View or edit your gun details." is="info bold"></b-hero>
+<section class="section">
+  <div class="container">
+    <form #form="ngForm" (ngSubmit)="submit()">
+      <div class="columns">
+
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Name" name="name" [(ngModel)]="name">
+            </div>
+            <p class="help">Required</p>
+          </div>
+          <div class="field">
+            <label class="label">Serial Number</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
+            </div>
+            <p class="help">Required</p>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Make/Model</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Make/Model" name="details" [(ngModel)]="details">
+            </div>
+            <p class="help">Required</p>
+          </div>
+          <div class="field">
+            <label class="label">Update Primary Photo</label>
+            <div class="control">
+              <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="columns">
+
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">Notes</label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="Notes"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</section>

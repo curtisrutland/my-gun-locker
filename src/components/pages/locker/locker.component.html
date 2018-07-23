@@ -1,18 +1,9 @@
-<section class="hero is-success is-bold" title="">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">My Gun Locker</h1>
-    </div>
-  </div>
-</section>
-  <section class="notification is-warning" *ngIf="!gunGroups.length">
-    <div class="container">
-      <h2 class="subtitle">
-        You haven't added any guns yet!
-      </h2>
-    </div>
-  </section>
+<b-hero></b-hero>
+<b-notification *ngIf="!gunGroups.length">
+  <h2 class="subtitle">
+    You haven't added any guns yet!
+  </h2>
+</b-notification>
 <mgl-add-gun></mgl-add-gun>
-<section [mgl-gun-card-cols-container]="gunGroups" *ngIf="gunGroups.length" class="section"></section>
-
+<mgl-gun-card-cols-container [gunGroups]="gunGroups" *ngIf="gunGroups.length"></mgl-gun-card-cols-container>
 <mgl-scroll-top></mgl-scroll-top>

@@ -1,23 +1,11 @@
-<section class="hero is-success is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">My Gun Locker</h1>
-      <h2 class="subtitle">
-        Your virtual gun locker. Store pictures and serial numbers securely in the cloud.
-      </h2>
-    </div>
-  </div>
-
-</section>
-<section class="notification is-warning">
-  <div class="container">
-    <span class="icon">
-      <fa-icon [icon]="warning"></fa-icon>
-    </span>
-    My Gun Locker requires you to sign in. Choose a provider below.
-  </div>
-</section>
-<section class="container">
+<b-hero></b-hero>
+<b-notification>
+  <span class="icon">
+    <fa-icon [icon]="warning"></fa-icon>
+  </span>
+  My Gun Locker requires you to sign in. Choose a provider below.
+</b-notification>
+<section class="section container">
   <div class="center-btn">
     <button class="button is-info is-outline is-large is-fullwidth is-rounded" (click)="login()">Sign In With Google</button>
   </div>
