@@ -10,4 +10,4 @@ export * from "./guns/add-gun/add-gun.component";
 export * from "./pages/login/login.component";
 export * from "./pages/locker/locker.component";
 export * from "./pages/new-gun/new-gun.component";
-
+export * from "./pages/gun/gun.component";

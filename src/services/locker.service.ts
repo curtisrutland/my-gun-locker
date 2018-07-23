@@ -4,7 +4,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { UserService } from './user.service';
 import { Gun, User } from '../models';
 import { Subscription, BehaviorSubject } from 'rxjs';
-import { finalize, map, switchMap } from "rxjs/operators";
+import { finalize } from "rxjs/operators";
+import { Photo } from '../models/photo';
 
 @Injectable()
 export class LockerService {
@@ -27,19 +28,19 @@ export class LockerService {
     if (!gun.id) gun.id = this.getId();
     const { id } = gun;
     if (primaryImage) {
-      let primaryImageUrl = await this.createFile(primaryImage, id);
-      gun.primaryPhotoUrl = primaryImageUrl;
+      let primaryPhoto = await this.createFile(primaryImage, id);
+      gun.primaryPhoto = primaryPhoto;
     }
     await this.gunsCollection.doc(id).set(gun);
   }
 
-  private async createFile(file: File, id: string): Promise<string> {
-    const filePath = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
-    const fileRef = this.storage.ref(filePath);
+  private async createFile(file: File, id: string): Promise<Photo> {
+    const path = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
+    const fileRef = this.storage.ref(path);
     const task = fileRef.put(file);
-    return new Promise<string>((res, rej) => {
+    return new Promise<Photo>((res, _) => {
       task.snapshotChanges().pipe(
-        finalize(() => fileRef.getDownloadURL().subscribe(url => res(url)))
+        finalize(() => fileRef.getDownloadURL().subscribe((url: string) => res({path, url})))
       ).subscribe();
     });
   }

@@ -16,6 +16,14 @@ export class GunCardComponent implements OnInit {
   icon = faCopy;
   showClipboard = !!navigator.clipboard;
 
+  get photoUrl() {
+    if(this.gun.primaryPhoto){
+      return this.gun.primaryPhoto.url;
+    } else {
+      return "/assets/pistol.jpg";
+    }
+  }
+
   constructor() { }
 
   ngOnInit() { }
