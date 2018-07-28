@@ -68,7 +68,7 @@ export class LockerService {
     const path = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
     const { url$ } = this.createFileObservables(file, path);
     const url = await url$.toPromise();
-    return { path, url };
+    return { path, url, id: this.getId() };
   }
 
   private createFileObservables(file: File, path: string): { progress$: Observable<number>, url$: Observable<string> } {
