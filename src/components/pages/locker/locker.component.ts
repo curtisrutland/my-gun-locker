@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LockerService } from '../../../services';
 import { Gun } from '../../../models';
+import { chunkArray } from '../../../helpers/functions';
 
 
 @Component({
@@ -14,20 +15,9 @@ export class LockerComponent implements OnInit {
   gunGroups: Gun[][] = [];
 
   ngOnInit() {
-    console.log("init");
     this.lockerService.guns$.subscribe(g => {
-      console.log(g);
-      this.gunGroups = this.chunkArray(g, 3);
+      this.gunGroups = chunkArray(g, 3);
     });
-  }
-
-  chunkArray<T>(arr: T[], chunkSize: number): T[][] {
-    var chunks: T[][] = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      let chunk = arr.slice(i, i + chunkSize);
-      chunks.push(chunk);
-    }
-    return chunks;
   }
 }
 

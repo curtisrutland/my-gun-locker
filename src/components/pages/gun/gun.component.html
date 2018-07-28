@@ -13,16 +13,6 @@
             <p class="help">Required</p>
           </div>
           <div class="field">
-            <label class="label">Serial Number</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
-            </div>
-            <p class="help">Required</p>
-          </div>
-        </div>
-
-        <div class="column is-half">
-          <div class="field">
             <label class="label">Make/Model</label>
             <div class="control">
               <input class="input" type="text" placeholder="Make/Model" name="details" [(ngModel)]="details">
@@ -30,35 +20,38 @@
             <p class="help">Required</p>
           </div>
           <div class="field">
-            <label class="label">Update Primary Photo</label>
+            <label class="label">Serial Number</label>
             <div class="control">
-              <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
+              <input class="input" type="text" placeholder="Serial No." name="serial" [(ngModel)]="serial">
             </div>
+            <p class="help">Required</p>
           </div>
-        </div>
-
-      </div>
-
-      <div class="columns">
-
-        <div class="column is-half">
           <div class="field">
-            <label class="label">Notes</label>
-            <div class="control">
+            <label class="label" (click)="toggleNotes()">
+              <span>Notes</span>
+              <span class="icon">
+                <fa-icon [icon]="notesIcon"></fa-icon>
+              </span>
+            </label>
+            <div class="control" [class.hidden]="!notesVisible">
               <textarea class="textarea" placeholder="Notes" name="notes" [(ngModel)]="notes"></textarea>
             </div>
           </div>
         </div>
-
         <div class="column is-half">
-          <mgl-photo-card *ngIf="gun?.primaryPhoto as photo" [url]="photo.url"></mgl-photo-card>
+            <div class="field">
+              <label class="label">Update Primary Photo</label>
+              <div class="control">
+                <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
+              </div>
+            </div>
+          <mgl-photo-card *ngIf="gun?.primaryPhoto as photo" [url]="photo.url" [actions]="photoCardActions"></mgl-photo-card>
         </div>
-
       </div>
       <div class="field is-grouped is-grouped-centered">
         <button type="submit" [ngClass]="buttonClass" [disabled]="!canSubmit">
           <span class="icon">
-            <fa-icon [icon]="icon"></fa-icon>
+            <fa-icon [icon]="pen"></fa-icon>
           </span>
           <span>Update Gun</span>
         </button>

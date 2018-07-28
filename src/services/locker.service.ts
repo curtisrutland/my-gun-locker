@@ -51,9 +51,9 @@ export class LockerService {
   }
 
   async updateGun(gun: Gun, primaryImage?: File) {
-    if(primaryImage) {
-      if(gun.primaryPhoto){
-        if(!gun.photos) {
+    if (primaryImage) {
+      if (gun.primaryPhoto) {
+        if (!gun.photos) {
           gun.photos = [];
         }
         gun.photos.push(gun.primaryPhoto);

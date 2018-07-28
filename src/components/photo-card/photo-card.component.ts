@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faImages } from '@fortawesome/free-solid-svg-icons';
+import { CardAction } from '../../models/cardAction';
 
 @Component({
   selector: 'mgl-photo-card',
@@ -11,8 +12,9 @@ export class PhotoCardComponent implements OnInit {
 
   @Input() url: string;
   @Input() alt: string = "no alt text available";
+  @Input() actions: CardAction[] = [];
 
-  icon = faImage;
+  icon = faImages;
 
   constructor() { }
 

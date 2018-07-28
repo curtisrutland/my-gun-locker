@@ -1,0 +1,11 @@
+<b-hero [title]="gun?.name" subtitle="More Photos" is="primary bold"></b-hero>
+<section class="section">
+  <div class="columns" *ngFor="let group of photos">
+    <div class="column is-one-third" *ngFor="let photo of group">
+      <mgl-photo-card [url]="photo.url" [actions]="photo.actions"></mgl-photo-card>
+    </div>
+  </div>
+</section>
+<mgl-confirm [show]="showDeleteModal" (result)="onDeleteModalResult($event)">
+  <h2 class="subtitle">Are you sure?</h2>
+</mgl-confirm>

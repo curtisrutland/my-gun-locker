@@ -1,16 +1,18 @@
 <div class="card">
   <div class="card-image">
     <figure class="image is-4by3">
-      <img [src]="url" [alt]="alt">
+      <a [href]="url" target="_blank">
+        <img [src]="url" [alt]="alt">
+      </a>
     </figure>
   </div>
-  <footer class="card-footer">
-    <a download="photo.jpg" [href]="url" class="card-footer-item" target="_blank">
+  <footer class="card-footer" *ngIf="actions.length">
+    <a class="card-footer-item" *ngFor="let action of actions" (click)="action.action()">
       <span class="icon">
-        <fa-icon [icon]="icon"></fa-icon>
+        <fa-icon [icon]="action.icon"></fa-icon>
       </span>
       <span>
-        Full Image
+        {{action.text}}
       </span>
     </a>
   </footer>

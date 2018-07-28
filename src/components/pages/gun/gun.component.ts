@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Gun } from '../../../models';
 import { LockerService } from '../../../services';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faCaretDown, faCaretRight, faImages } from '@fortawesome/free-solid-svg-icons';
+import { CardAction } from '../../../models/cardAction';
 
 @Component({
   selector: 'mgl-gun',
@@ -17,10 +18,6 @@ export class GunComponent implements OnInit {
     public lockerService: LockerService
   ) { }
 
-  get gunName() {
-    return this.gun ? this.gun.name : "Loading...";
-  }
-
   gun: Gun = null;
   serial: string = "";
   name: string = "";
@@ -28,7 +25,12 @@ export class GunComponent implements OnInit {
   notes: string = "";
   newPrimaryFile: File = null;
   loading = false;
-  icon = faPen;
+  notesVisible = false;
+  pen = faPen;
+
+  get notesIcon() {
+    return this.notesVisible ? faCaretDown : faCaretRight;
+  }
 
   get canSubmit() {
     if (this.loading) { return false; }
@@ -46,6 +48,19 @@ export class GunComponent implements OnInit {
     const classes = ["button", "is-info", "is-rounded"];
     if (this.loading) classes.push("is-loading");
     return classes;
+  }
+
+  get gunName() {
+    return this.gun ? this.gun.name : "Loading...";
+  }
+
+  get photoCardActions(): CardAction[] {
+    if (!this.gun) return null;
+    return [{
+      icon: faImages,
+      text: "More Images",
+      action: () => this.router.navigate(['/p', this.gun.id])
+    }];
   }
 
   async ngOnInit() {
@@ -93,5 +108,9 @@ export class GunComponent implements OnInit {
       this.loading = false;
       this.router.navigate(["/"]);
     }
+  }
+
+  toggleNotes() {
+    this.notesVisible = !this.notesVisible;
   }
 }
