@@ -5,7 +5,22 @@
       <mgl-photo-card [url]="photo.url" [actions]="photo.actions"></mgl-photo-card>
     </div>
   </div>
+  <div class="columns">
+    <div class="column">
+      <div class="field" mgl-photo-chooser="Add More Photos" [multiple]="true" (files)="addPhotos($event)"></div>
+      <div class="field is-grouped is-grouped-centered">
+        <button class="button is-medium is-rounded is-link" [disabled]="!canUpload" (click)="upload()">Upload</button>
+      </div>
+    </div>
+  </div>
 </section>
 <mgl-confirm [show]="showDeleteModal" (result)="onDeleteModalResult($event)">
-  <h2 class="subtitle">Are you sure?</h2>
+  <h2 class="subtitle">Delete this photo?</h2>
 </mgl-confirm>
+<mgl-confirm [show]="showSetPrimaryModal" (result)="onSetPrimaryModalResult($event)">
+  <h2 class="subtitle">Set this photo as primary?</h2>
+</mgl-confirm>
+<mgl-progress-modal [show]="uploading" [value]="uploadsCompleted" [max]="uploads">
+  <h2 class="subtitle">Uploading Photos...</h2>
+</mgl-progress-modal>
+<mgl-message-modal [message]="updatingModalMessage" [show]="showUpdatingModal"></mgl-message-modal>

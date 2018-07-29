@@ -1,0 +1,6 @@
+<div class="field">
+  <label class="label">{{label}}</label>
+  <div class="control">
+    <input #input class="input" type="file" accept="image/*" name="images" (change)="imagesChanged($event)" [multiple]="multiple">
+  </div>
+</div>

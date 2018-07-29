@@ -3,11 +3,7 @@ import { bClasses } from '../../../helpers/functions';
 
 @Component({
   selector: 'b-progress',
-  template: `
-<div class="container">
-  <progress class="progress" [max]="max" [value]="value" [ngClass]="classes"></progress>
-</div>
-  `,
+  template: `<progress class="progress" [max]="max" [value]="value" [ngClass]="classes"></progress>`,
   styles: [`
 .progress::-webkit-progress-value {
   transition: width 0.5s ease;

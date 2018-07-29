@@ -64,6 +64,49 @@ export class LockerService {
     await this.gunsCollection.doc(gun.id).update(gun);
   }
 
+  async updateGunPrimaryPhoto(gun: Gun, primaryPhoto: Photo) {
+    gun.photos = gun.photos.filter(p => p.id !== primaryPhoto.id);
+    if (gun.primaryPhoto) {
+      gun.photos.unshift(gun.primaryPhoto);
+    }
+    gun.primaryPhoto = primaryPhoto;
+    await this.gunsCollection.doc(gun.id).update(gun);
+  }
+
+  async addGunPhotos(gun: Gun, photos: Photo[]) {
+    if (gun.photos) {
+      gun.photos = gun.photos.concat(photos);
+    } else {
+      gun.photos = photos;
+    }
+    await this.gunsCollection.doc(gun.id).update(gun);
+  }
+
+  async deleteGunPhoto(gun: Gun, photo: Photo) {
+    gun.photos = gun.photos.filter(p => p.id !== photo.id);
+    if (gun.primaryPhoto && gun.primaryPhoto.id === photo.id) {
+      gun.primaryPhoto = null;
+    }
+    await this.deleteFile(photo.path);
+    await this.gunsCollection.doc(gun.id).update(gun);
+  }
+
+  addGunImages(gun: Gun, images: File[]): Observable<number> {
+    return new Observable<number>(observer => {
+      let promises: Promise<Photo>[] = [];
+      let count = 0;
+      for (let image of images) {
+        promises.push(this.createFile(image, gun.id).then(photo => {
+          observer.next(++count);
+          return photo;
+        }));
+      }
+      Promise.all(promises).then(photos => {
+        this.addGunPhotos(gun, photos).then(() => observer.complete());
+      });
+    });
+  }
+
   private async createFile(file: File, id: string): Promise<Photo> {
     const path = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
     const { url$ } = this.createFileObservables(file, path);
@@ -82,7 +125,13 @@ export class LockerService {
       });
     })).subscribe();
     const progress$ = task.percentageChanges();
+    progress$.subscribe(p => console.log(p));
     return { progress$, url$: urlSub.asObservable() };
+  }
+
+  private deleteFile(path: string): Promise<{}> {
+    const ref = this.storage.ref(path);
+    return ref.delete().toPromise();
   }
 
   private userStateChanged(user: User) {

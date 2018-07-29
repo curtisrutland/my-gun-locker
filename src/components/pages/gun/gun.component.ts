@@ -55,7 +55,7 @@ export class GunComponent implements OnInit {
   }
 
   get photoCardActions(): CardAction[] {
-    if (!this.gun) return null;
+    if (!this.gun) return [];
     return [{
       icon: faImages,
       text: "More Images",
@@ -83,10 +83,18 @@ export class GunComponent implements OnInit {
     }
   }
 
-  primaryImageChanged(event: Event) {
-    const target = <HTMLInputElement>event.target;
-    if (target.files && target.files.length > 0) {
-      this.newPrimaryFile = target.files[0];
+  // primaryImageChanged(event: Event) {
+  //   const target = <HTMLInputElement>event.target;
+  //   if (target.files && target.files.length > 0) {
+  //     this.newPrimaryFile = target.files[0];
+  //   } else {
+  //     this.newPrimaryFile = null;
+  //   }
+  // }
+
+  primaryImageChanged(files: File[]) {
+    if (files) {
+      this.newPrimaryFile = files[0];
     } else {
       this.newPrimaryFile = null;
     }

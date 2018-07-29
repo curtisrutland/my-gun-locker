@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Gun } from '../../../models';
 import { LockerService } from '../../../services';
@@ -6,6 +6,7 @@ import { PhotoWrapper, Photo } from '../../../models/photo';
 import { chunkArray } from '../../../helpers/functions';
 import { CardAction } from '../../../models/cardAction';
 import { faTimes, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { PhotoChooserComponent } from '../../photo-chooser/photo-chooser.component';
 
 @Component({
   selector: 'mgl-gun-photos',
@@ -20,12 +21,24 @@ export class GunPhotosComponent implements OnInit {
     public lockerService: LockerService
   ) { }
 
+  @ViewChild(PhotoChooserComponent) photoChooser: PhotoChooserComponent;
+
   id: string;
   gun: Gun = null;
   photos: PhotoWrapper[][] = [];
   showDeleteModal = false;
   showSetPrimaryModal = false;
+  showUpdatingModal = false;
   photoPendingAction: Photo = null;
+  updatingModalMessage = "";
+  imagesPendingUpload: File[] = null;
+  uploading = false;
+  uploadsCompleted = 0;
+  uploads = 0;
+
+  get canUpload() {
+    return !this.uploading && this.imagesPendingUpload != null && this.imagesPendingUpload.length > 0;
+  }
 
   async ngOnInit() {
     window.scroll({
@@ -71,20 +84,64 @@ export class GunPhotosComponent implements OnInit {
     return actions;
   }
 
+  async upload() {
+    this.uploading = true;
+    this.uploads = this.imagesPendingUpload.length;
+    this.uploadsCompleted = 0;
+    this.lockerService.addGunImages(this.gun, this.imagesPendingUpload).subscribe({
+      next: n => this.uploadsCompleted++,
+      complete: async () => {
+        await this.getGun();
+        this.uploading = false;
+        this.uploads = 0;
+        this.imagesPendingUpload = null;
+        this.photoChooser.clear();
+      }
+    })
+  }
+
   private deletePhoto(photo: Photo) {
     this.photoPendingAction = photo;
     this.showDeleteModal = true;
   }
 
-  onDeleteModalResult(result: boolean) {
-    if (result) {
-      console.log("delete", this.photoPendingAction);
-    }
+  async onDeleteModalResult(result: boolean) {
     this.showDeleteModal = false;
+    if (result) {
+      this.showUpdateMessage("Deleting photo...");
+      await this.lockerService.deleteGunPhoto(this.gun, this.photoPendingAction);
+      await this.getGun();
+      this.showUpdateMessage(false);
+    }
     this.photoPendingAction = null;
   }
 
   private setPrimary(photo: Photo) {
-    console.log("set primary", photo);
+    this.photoPendingAction = photo;
+    this.showSetPrimaryModal = true;
+  }
+
+  async onSetPrimaryModalResult(result: boolean) {
+    this.showSetPrimaryModal = false;
+    if (result) {
+      this.showUpdateMessage("Updating primary photo...");
+      await this.lockerService.updateGunPrimaryPhoto(this.gun, this.photoPendingAction);
+      await this.getGun();
+      this.showUpdateMessage(false);
+    }
+    this.photoPendingAction = null;
+  }
+
+  addPhotos(images: File[]) {
+    this.imagesPendingUpload = images;
+  }
+
+  private showUpdateMessage(show: string | boolean) {
+    if (!show) {
+      this.showUpdatingModal = false;
+    } else {
+      this.updatingModalMessage = <string>show;
+      this.showUpdatingModal = true;
+    }
   }
 }

@@ -27,7 +27,7 @@
             <p class="help">Required</p>
           </div>
           <div class="field">
-            <label class="label" (click)="toggleNotes()">
+            <label class="label pointer" (click)="toggleNotes()">
               <span>Notes</span>
               <span class="icon">
                 <fa-icon [icon]="notesIcon"></fa-icon>
@@ -39,13 +39,8 @@
           </div>
         </div>
         <div class="column is-half">
-            <div class="field">
-              <label class="label">Update Primary Photo</label>
-              <div class="control">
-                <input class="input" type="file" accept="image/*" name="image" (change)="primaryImageChanged($event)">
-              </div>
-            </div>
-          <mgl-photo-card *ngIf="gun?.primaryPhoto as photo" [url]="photo.url" [actions]="photoCardActions"></mgl-photo-card>
+          <div class="field" mgl-photo-chooser="Update Primary Photo" (files)="primaryImageChanged($event)"></div>
+          <mgl-photo-card [url]="gun?.primaryPhoto?.url" [actions]="photoCardActions"></mgl-photo-card>
         </div>
       </div>
       <div class="field is-grouped is-grouped-centered">

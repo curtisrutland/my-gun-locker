@@ -16,6 +16,10 @@ export class PhotoCardComponent implements OnInit {
 
   icon = faImages;
 
+  get showPhoto() {
+    return !!this.url;
+  }
+
   constructor() { }
 
   ngOnInit() { }

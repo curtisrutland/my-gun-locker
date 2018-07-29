@@ -15,7 +15,8 @@ import {
   ScrollTopComponent, NewGunComponent, HeroComponent,
   NotificationComponent, PhotoGridComponent, PhotoCardComponent,
   GunPhotosComponent, ModalComponent, ConfirmComponent,
-  ProgressComponent
+  ProgressComponent, ProgressModalComponent, MessageModalComponent,
+  PhotoChooserComponent
 } from '../components';
 import { UserService, LockerService } from "../services";
 
@@ -28,7 +29,8 @@ import { environment } from '../environments/environment';
     GunCardColsContainerComponent, ScrollTopComponent, NewGunComponent,
     AddGunComponent, GunComponent, HeroComponent, PhotoGridComponent,
     NotificationComponent, PhotoCardComponent, GunPhotosComponent,
-    ModalComponent, ConfirmComponent, ProgressComponent
+    ModalComponent, ConfirmComponent, ProgressComponent, ProgressModalComponent,
+    MessageModalComponent, PhotoChooserComponent
   ],
   imports: [
     BrowserModule,
