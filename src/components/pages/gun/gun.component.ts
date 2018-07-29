@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Gun } from '../../../models';
-import { LockerService } from '../../../services';
+import { LockerService, NavbarService } from '../../../services';
 import { faPen, faCaretDown, faCaretRight, faImages } from '@fortawesome/free-solid-svg-icons';
 import { CardAction } from '../../../models/cardAction';
 
@@ -15,7 +15,8 @@ export class GunComponent implements OnInit {
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    public lockerService: LockerService
+    public locker: LockerService,
+    public navbar: NavbarService
   ) { }
 
   gun: Gun = null;
@@ -68,33 +69,22 @@ export class GunComponent implements OnInit {
   }
 
   async ngOnInit() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-
     const id = this.route.snapshot.paramMap.get("id");
     try {
-      const gun = await this.lockerService.getGun(id);
+      const gun = await this.locker.getGun(id);
       this.gun = gun;
       this.serial = gun.serial;
       this.name = gun.name;
       this.details = gun.details;
       this.notes = gun.notes;
+      this.navbar.setActions([
+        { text: "My Locker", action: ['/'] },
+        { text: "More Photos", action: ['/p', this.gun.id ]}
+      ]);
     } catch (err) {
       this.router.navigate(["/"]);
     }
   }
-
-  // primaryImageChanged(event: Event) {
-  //   const target = <HTMLInputElement>event.target;
-  //   if (target.files && target.files.length > 0) {
-  //     this.newPrimaryFile = target.files[0];
-  //   } else {
-  //     this.newPrimaryFile = null;
-  //   }
-  // }
 
   primaryImageChanged(files: File[]) {
     if (files) {
@@ -113,7 +103,7 @@ export class GunComponent implements OnInit {
     this.gun.modifiedOn = d;
     try {
       this.loading = true;
-      await this.lockerService.updateGun(this.gun, this.newPrimaryFile);
+      await this.locker.updateGun(this.gun, this.newPrimaryFile);
     } catch (err) {
       console.error(err);
     } finally {

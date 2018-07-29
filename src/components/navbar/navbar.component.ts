@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services';
+import { Router } from '@angular/router';
+import { UserService, NavbarService } from '../../services';
 import { User } from '../../models';
 import { environment } from '../../environments/environment';
+import { NavAction } from '../../models/navAction';
 
 @Component({
   selector: 'mgl-navbar',
@@ -10,11 +12,16 @@ import { environment } from '../../environments/environment';
 })
 
 export class NavbarComponent implements OnInit {
-  constructor(public userService: UserService) { }
+  constructor(
+    public userService: UserService,
+    public navbarService: NavbarService,
+    public router: Router
+  ) { }
 
   menuActive = false;
   dropdownActive = false;
   user: User;
+  actions$ = this.navbarService.actions$;
 
   get classes() { return this.menuActive ? ["is-active"] : []; }
   get dropdownClasses() { return this.dropdownActive ? ["is-active"] : [] };
@@ -39,5 +46,14 @@ export class NavbarComponent implements OnInit {
     this.userService.logOut();
     this.dropdownActive = false;
     this.menuActive = false;
+  }
+
+  actionClick(action: NavAction) {
+    this.menuActive = false;
+    if(typeof(action.action) === "function") {
+      action.action();
+    } else {
+      this.router.navigate(action.action);
+    }
   }
 }

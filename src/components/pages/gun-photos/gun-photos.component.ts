@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Gun } from '../../../models';
-import { LockerService } from '../../../services';
+import { LockerService, NavbarService } from '../../../services';
 import { PhotoWrapper, Photo } from '../../../models/photo';
 import { CardAction } from '../../../models/cardAction';
 import { faTimes, faAsterisk } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +17,8 @@ export class GunPhotosComponent implements OnInit {
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    public lockerService: LockerService
+    public lockerService: LockerService,
+    public navbarService: NavbarService
   ) { }
 
   @ViewChild(PhotoChooserComponent) photoChooser: PhotoChooserComponent;
@@ -49,6 +50,10 @@ export class GunPhotosComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get("id");
     try {
       await this.getGun();
+      this.navbarService.setActions([
+        { text: "My Locker", action: ['/'] },
+        { text: "Gun Info", action: ['/g', this.gun.id] }
+      ]);
     } catch (err) {
       this.router.navigate(["/"]);
     }

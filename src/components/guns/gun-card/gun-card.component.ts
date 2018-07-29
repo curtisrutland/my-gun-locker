@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Gun } from '../../../models';
-import { faCopy, faCheck, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faCheck, faPen, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 declare var navigator: any;
 
@@ -13,7 +13,8 @@ declare var navigator: any;
 export class GunCardComponent implements OnInit {
   @Input('mgl-gun-card') gun: Gun;
 
-  icon = faCopy;
+  copyIcon = faCopy;
+  penIcon = faPen;
   showClipboard = !!navigator.clipboard;
 
   get photoUrl() {
@@ -44,8 +45,8 @@ export class GunCardComponent implements OnInit {
   }
 
   private setTempIcon(icon) {
-    this.icon = icon;
-    window.setTimeout(() => this.icon = faCopy, 1500);
+    this.copyIcon = icon;
+    window.setTimeout(() => this.copyIcon = faCopy, 1500);
   }
 
 }

@@ -14,7 +14,7 @@
       <strong>SN:</strong>&nbsp;
       <span>{{gun.serial}}</span>
       <a class="button is-rounded icon copy-icon" (click)="copy()" *ngIf="showClipboard">
-        <fa-icon [icon]="icon"></fa-icon>
+        <fa-icon [icon]="copyIcon"></fa-icon>
       </a>
     </p>
     <p>
@@ -23,5 +23,12 @@
   </div>
 </div>
 <footer class="card-footer">
-  <a [routerLink]="['/g', gun.id]" class="card-footer-item">View / Update</a>
+  <a [routerLink]="['/g', gun.id]" class="card-footer-item">
+    <span class="icon">
+      <fa-icon [icon]="penIcon"></fa-icon>
+    </span>
+    <span>
+      Details
+    </span>
+  </a>
 </footer>

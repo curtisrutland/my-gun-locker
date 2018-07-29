@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LockerService } from '../../../services';
+import { LockerService, NavbarService } from '../../../services';
 import { Gun } from '../../../models';
 
 
@@ -9,14 +9,15 @@ import { Gun } from '../../../models';
   styleUrls: ['locker.component.scss']
 })
 export class LockerComponent implements OnInit {
-  constructor(public lockerService: LockerService) { }
+  constructor(public locker: LockerService, public navbar: NavbarService) { }
 
   guns: Gun[] = [];
 
   ngOnInit() {
-    this.lockerService.guns$.subscribe(guns => {
+    this.locker.guns$.subscribe(guns => {
       this.guns = guns;
     });
+    this.navbar.clearActions();
   }
 }
 
