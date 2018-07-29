@@ -22,3 +22,4 @@ export * from "./pages/locker/locker.component";
 export * from "./pages/new-gun/new-gun.component";
 export * from "./pages/gun/gun.component";
 export * from "./pages/gun-photos/gun-photos.component";
+export * from "./pages/about/about.component";

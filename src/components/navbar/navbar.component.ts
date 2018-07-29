@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService, NavbarService } from '../../services';
 import { User } from '../../models';
-import { environment } from '../../environments/environment';
 import { NavAction } from '../../models/navAction';
 
 @Component({
@@ -26,8 +25,6 @@ export class NavbarComponent implements OnInit {
   get classes() { return this.menuActive ? ["is-active"] : []; }
   get dropdownClasses() { return this.dropdownActive ? ["is-active"] : [] };
   get username() { return this.user ? this.user.name : null };
-  get version() { return environment.version };
-  get projectLink() { return environment.projectLink };
 
   ngOnInit() {
     this.userService.user$.subscribe(user => this.user = user);
