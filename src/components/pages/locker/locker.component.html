@@ -1,9 +1,10 @@
 <b-hero></b-hero>
-<b-notification *ngIf="!gunGroups.length">
+<b-notification *ngIf="!guns.length">
   <h2 class="subtitle">
     You haven't added any guns yet!
   </h2>
 </b-notification>
 <mgl-add-gun></mgl-add-gun>
-<mgl-gun-card-cols-container [gunGroups]="gunGroups" *ngIf="gunGroups.length"></mgl-gun-card-cols-container>
+<mgl-gun-card-cols [guns]="guns" *ngIf="guns.length"></mgl-gun-card-cols>
+<!-- <mgl-gun-card-cols-container [gunGroups]="gunGroups" *ngIf="gunGroups.length"></mgl-gun-card-cols-container> -->
 <mgl-scroll-top></mgl-scroll-top>

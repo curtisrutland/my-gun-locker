@@ -1,3 +1,9 @@
-<div class="column is-one-third" *ngFor="let gun of gunGroup">
-  <div class="card" [mgl-gun-card]="gun"></div>
-</div>
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline" *ngIf="guns.length">
+      <div class="column is-one-third" *ngFor="let gun of guns">
+        <div class="card" [mgl-gun-card]="gun"></div>
+      </div>
+    </div>
+  </div>
+</section>

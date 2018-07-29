@@ -15,7 +15,6 @@ export * from "./bulma/progress/progress.component";
 
 export * from "./guns/gun-card/gun-card.component";
 export * from "./guns/gun-card-cols/gun-card-cols.component";
-export * from "./guns/gun-card-cols-container/gun-card-cols-container.component";
 export * from "./guns/add-gun/add-gun.component";
 
 export * from "./pages/login/login.component";

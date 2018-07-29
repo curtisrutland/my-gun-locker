@@ -12,11 +12,13 @@ import { chunkArray } from '../../../helpers/functions';
 export class LockerComponent implements OnInit {
   constructor(public lockerService: LockerService) { }
 
-  gunGroups: Gun[][] = [];
+  //gunGroups: Gun[][] = [];
+  guns: Gun[] = [];
 
   ngOnInit() {
     this.lockerService.guns$.subscribe(g => {
-      this.gunGroups = chunkArray(g, 3);
+      //this.gunGroups = chunkArray(g, 3);
+      this.guns = g;
     });
   }
 }

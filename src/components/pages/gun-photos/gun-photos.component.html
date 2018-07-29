@@ -1,7 +1,7 @@
 <b-hero [title]="gun?.name" subtitle="More Photos" is="primary bold"></b-hero>
 <section class="section">
-  <div class="columns" *ngFor="let group of photos">
-    <div class="column is-one-third" *ngFor="let photo of group">
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let photo of photos">
       <mgl-photo-card [url]="photo.url" [actions]="photo.actions" [title]="photo.title"></mgl-photo-card>
     </div>
   </div>

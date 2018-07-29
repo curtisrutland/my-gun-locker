@@ -25,7 +25,7 @@ export class GunPhotosComponent implements OnInit {
 
   id: string;
   gun: Gun = null;
-  photos: PhotoWrapper[][] = [];
+  photos: PhotoWrapper[] = [];
   showDeleteModal = false;
   showSetPrimaryModal = false;
   showUpdatingModal = false;
@@ -64,7 +64,7 @@ export class GunPhotosComponent implements OnInit {
     if (gun.primaryPhoto) {
       photos.unshift(new PhotoWrapper(gun.primaryPhoto, true, this.createActions(gun.primaryPhoto, true)));
     }
-    this.photos = chunkArray(photos, 3);
+    this.photos = photos; //chunkArray(photos, 3);
     this.gun = gun;
   }
 

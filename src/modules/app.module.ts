@@ -11,12 +11,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   AppComponent, LoginComponent, NavbarComponent,
   LockerComponent, GunCardComponent, GunCardColsComponent,
-  GunCardColsContainerComponent, AddGunComponent, GunComponent,
+  AddGunComponent, GunComponent, PhotoChooserComponent,
   ScrollTopComponent, NewGunComponent, HeroComponent,
   NotificationComponent, PhotoGridComponent, PhotoCardComponent,
   GunPhotosComponent, ModalComponent, ConfirmComponent,
-  ProgressComponent, ProgressModalComponent, MessageModalComponent,
-  PhotoChooserComponent
+  ProgressComponent, ProgressModalComponent, MessageModalComponent
 } from '../components';
 import { UserService, LockerService } from "../services";
 
@@ -25,12 +24,12 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, NavbarComponent,
-    LockerComponent, GunCardComponent, GunCardColsComponent,
-    GunCardColsContainerComponent, ScrollTopComponent, NewGunComponent,
+    LockerComponent, GunCardComponent, GunCardColsComponent, 
+    ScrollTopComponent, NewGunComponent, PhotoChooserComponent,
     AddGunComponent, GunComponent, HeroComponent, PhotoGridComponent,
     NotificationComponent, PhotoCardComponent, GunPhotosComponent,
     ModalComponent, ConfirmComponent, ProgressComponent, ProgressModalComponent,
-    MessageModalComponent, PhotoChooserComponent
+    MessageModalComponent
   ],
   imports: [
     BrowserModule,
