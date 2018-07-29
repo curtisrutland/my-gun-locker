@@ -8,6 +8,7 @@ export * from "./bulma/hero/hero.component";
 export * from "./bulma/notification/notification.component";
 export * from "./bulma/modal/modal.component";
 export * from "./bulma/modal/confirm/confirm.component";
+export * from "./bulma/progress/progress.component";
 
 export * from "./guns/gun-card/gun-card.component";
 export * from "./guns/gun-card-cols/gun-card-cols.component";

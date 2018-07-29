@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { bClasses } from '../../../helpers/functions';
 
 @Component({
   selector: 'b-hero',
@@ -12,7 +13,7 @@ export class HeroComponent implements OnInit {
   @Input() hideSubtitle: boolean = false;
 
   get classes() {
-    return ["hero", ...this.is.trim().split(' ').map(is => `is-${is}`)]
+    return bClasses("hero", this.is);
   }
 
   constructor() { }
