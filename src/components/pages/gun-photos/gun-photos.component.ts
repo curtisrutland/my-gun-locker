@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Gun } from '../../../models';
 import { LockerService } from '../../../services';
 import { PhotoWrapper, Photo } from '../../../models/photo';
-import { chunkArray } from '../../../helpers/functions';
 import { CardAction } from '../../../models/cardAction';
 import { faTimes, faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import { PhotoChooserComponent } from '../../photo-chooser/photo-chooser.component';
@@ -64,7 +63,7 @@ export class GunPhotosComponent implements OnInit {
     if (gun.primaryPhoto) {
       photos.unshift(new PhotoWrapper(gun.primaryPhoto, true, this.createActions(gun.primaryPhoto, true)));
     }
-    this.photos = photos; //chunkArray(photos, 3);
+    this.photos = photos;
     this.gun = gun;
   }
 
@@ -89,7 +88,7 @@ export class GunPhotosComponent implements OnInit {
     this.uploads = this.imagesPendingUpload.length;
     this.uploadsCompleted = 0;
     this.lockerService.addGunImages(this.gun, this.imagesPendingUpload).subscribe({
-      next: n => this.uploadsCompleted++,
+      next: () => this.uploadsCompleted++,
       complete: async () => {
         await this.getGun();
         this.uploading = false;
