@@ -1,4 +1,9 @@
 <div class="card">
+  <div class="card-header" *ngIf="title">
+    <p class="card-header-title">
+      {{title}}
+    </p>
+  </div>
   <div class="card-image" *ngIf="showPhoto">
     <figure class="image is-4by3">
       <a [href]="url" target="_blank">

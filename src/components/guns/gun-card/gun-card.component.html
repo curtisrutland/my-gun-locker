@@ -3,7 +3,7 @@
     {{gun.name}}
   </p>
 </header>
-<div class="card-image">
+<div class="card-image" *ngIf="photoUrl">
   <figure class="image is-4by3">
     <img [src]="photoUrl" alt="{{gun.name}} image">
   </figure>

@@ -2,7 +2,7 @@
 <section class="section">
   <div class="columns" *ngFor="let group of photos">
     <div class="column is-one-third" *ngFor="let photo of group">
-      <mgl-photo-card [url]="photo.url" [actions]="photo.actions"></mgl-photo-card>
+      <mgl-photo-card [url]="photo.url" [actions]="photo.actions" [title]="photo.title"></mgl-photo-card>
     </div>
   </div>
   <div class="columns">

@@ -56,9 +56,13 @@ export class GunComponent implements OnInit {
 
   get photoCardActions(): CardAction[] {
     if (!this.gun) return [];
+    let imgCount = this.gun.photos ? this.gun.photos.length : 0
+    if (this.gun.primaryPhoto) {
+      imgCount++;
+    }
     return [{
       icon: faImages,
-      text: "More Images",
+      text: `More Images (${imgCount})`,
       action: () => this.router.navigate(['/p', this.gun.id])
     }];
   }

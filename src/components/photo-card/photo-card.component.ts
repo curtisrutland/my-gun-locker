@@ -9,7 +9,7 @@ import { CardAction } from '../../models/cardAction';
 })
 
 export class PhotoCardComponent implements OnInit {
-
+  @Input() title: string;
   @Input() url: string;
   @Input() alt: string = "no alt text available";
   @Input() actions: CardAction[] = [];

@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 import { Gun, User } from '../models';
 import { Subscription, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { finalize } from "rxjs/operators";
-import { Photo } from '../models/photo';
+import { Photo, sortPhotosDesc } from '../models/photo';
 
 @Injectable()
 export class LockerService {
@@ -57,6 +57,7 @@ export class LockerService {
           gun.photos = [];
         }
         gun.photos.push(gun.primaryPhoto);
+        gun.photos = gun.photos.sort(sortPhotosDesc);
       }
       let primaryPhoto = await this.createFile(primaryImage, gun.id);
       gun.primaryPhoto = primaryPhoto;
@@ -69,6 +70,7 @@ export class LockerService {
     if (gun.primaryPhoto) {
       gun.photos.unshift(gun.primaryPhoto);
     }
+    gun.photos = gun.photos.sort(sortPhotosDesc);
     gun.primaryPhoto = primaryPhoto;
     await this.gunsCollection.doc(gun.id).update(gun);
   }
@@ -79,6 +81,7 @@ export class LockerService {
     } else {
       gun.photos = photos;
     }
+    gun.photos = gun.photos.sort(sortPhotosDesc);
     await this.gunsCollection.doc(gun.id).update(gun);
   }
 
@@ -87,6 +90,7 @@ export class LockerService {
     if (gun.primaryPhoto && gun.primaryPhoto.id === photo.id) {
       gun.primaryPhoto = null;
     }
+    gun.photos = gun.photos.sort(sortPhotosDesc);
     await this.deleteFile(photo.path);
     await this.gunsCollection.doc(gun.id).update(gun);
   }
@@ -111,7 +115,7 @@ export class LockerService {
     const path = `/user/${this.user.id}/${id}/${new Date().getTime()}`;
     const { url$ } = this.createFileObservables(file, path);
     const url = await url$.toPromise();
-    return { path, url, id: this.getId() };
+    return { path, url, id: this.getId(), created: new Date().getTime() };
   }
 
   private createFileObservables(file: File, path: string): { progress$: Observable<number>, url$: Observable<string> } {
