@@ -1,6 +1,7 @@
 <mgl-navbar></mgl-navbar>
 <div *ngIf="loggedIn; else login">
   <router-outlet></router-outlet>
+  <mgl-scroll-top></mgl-scroll-top>
 </div>
 <ng-template #login>
   <mgl-login></mgl-login>

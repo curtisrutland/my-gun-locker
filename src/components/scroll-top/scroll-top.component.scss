@@ -1,7 +1,15 @@
-$half: 1rem / 2;
+
 a {
   position: fixed;
-  bottom: 5px;
-  left: calc(50% - #{$half});
-  color: black;
+  bottom: -25px;
+  left: calc(50% - .5rem);
+  //easeInQuint
+  transition: bottom .25s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  
+  &.visible {
+    bottom: 5px;
+    //easeOutQuint
+    transition: bottom .25s cubic-bezier(0.23, 1, 0.32, 1);
+  }
 }
+

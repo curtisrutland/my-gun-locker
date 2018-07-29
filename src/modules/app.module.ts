@@ -17,7 +17,7 @@ import {
   GunPhotosComponent, ModalComponent, ConfirmComponent,
   ProgressComponent, ProgressModalComponent, MessageModalComponent
 } from '../components';
-import { UserService, LockerService } from "../services";
+import { UserService, LockerService, NavbarService } from "../services";
 
 import { environment } from '../environments/environment';
 
@@ -43,7 +43,8 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     UserService,
-    LockerService
+    LockerService,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })
